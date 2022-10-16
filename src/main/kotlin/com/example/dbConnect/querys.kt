@@ -2,7 +2,7 @@ import com.example.dbConnect.main
 
 fun SelectCars(): MutableList<String> {
 val connection = main()
-val query = connection?.prepareStatement("SELECT type FROM cars")
+val query = connection?.prepareStatement("SELECT type FROM cars WHERE isactive = True")
 val result = query?.executeQuery()
 val carsList = mutableListOf<String>()
 
