@@ -1,5 +1,6 @@
 package com.example.plugins
 
+import SelectCarDetails
 import io.ktor.server.application.*
 import io.ktor.server.html.*
 import SelectCars
@@ -32,20 +33,43 @@ fun Routing.selectCars() {
                 ul {
                     for (car in cars) {
                         li { +"$car" }
+                        form(action = "/carDetailes", method = FormMethod.post){
+                            button { +"Detailes" }
+                        }
                     }
                 }
             }
         }
-//            call.respondFile(File("./templates/index.html"))
+    }
+}
 
-//            call.respondText(carDetails.toString())
-//            call.respondText(html)
-
+fun Routing.CarDetailes() {
+    val carDetailes = SelectCarDetails()
+    get("/carDetailes"){
+        call.respondHtml {
+            head {
+                title { +"CarDetailes" }
+            }
+            body {
+                ul {
+                    for (carDetail in carDetailes) {
+                        li { +"$carDetail" }
+                        form(action = "/carDetailes", method = FormMethod.post){
+                            button { +"Detailes" }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
 
 
+//            call.respondFile(File("./templates/index.html"))
+
+//            call.respondText(carDetails.toString())
+//            call.respondText(html)
 
 
 //call.respondHtml {
