@@ -23,6 +23,15 @@ while (result?.next() == true) {
     return carsList
 }
 
+
+
+//fun BookCars(): MutableList<String> {
+//    val connection = main()
+//    val query = connection?.prepareStatement("")
+//    val result = query?.executeQuery()
+//    val carsList = mutableListOf<String>()
+
+
 //fun SelectCarDetails(): MutableList<String> {
 //    val connection = main()
 //    val query = connection?.prepareStatement("SELECT * FROM cars")

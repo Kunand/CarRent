@@ -17,7 +17,7 @@ fun SelectCarDetails(): MutableList<CarDetailes> {
         val price = result.getInt("price")
         val bookeddates = result.getString("bookeddates")
 
-        carDetail.add(id, type, email, address, telephone, price, bookeddates)
+        carDetail.add(CarDetailes(id, type, email, address, telephone, price, bookeddates))
     }
 
     return carDetail

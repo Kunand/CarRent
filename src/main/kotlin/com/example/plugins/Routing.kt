@@ -1,5 +1,7 @@
 package com.example.plugins
 
+
+import CarDetailes
 import SelectCarDetails
 import io.ktor.server.application.*
 import io.ktor.server.html.*
@@ -17,6 +19,7 @@ fun Application.configureRouting() {
 //    val html = File("index.html").readText()
         routing {
             selectCars()
+//            CarDetailes()
 
         }
     }
@@ -24,6 +27,7 @@ fun Application.configureRouting() {
 
 fun Routing.selectCars() {
     val cars = SelectCars()
+    val carDetailes = SelectCarDetails()
     get("/"){
         call.respondHtml {
             head {
@@ -33,7 +37,7 @@ fun Routing.selectCars() {
                 ul {
                     for (car in cars) {
                         li { +"$car" }
-                        form(action = "/carDetailes", method = FormMethod.post){
+                        form(action = "/carDetailes{id}", method = FormMethod.post){
                             button { +"Detailes" }
                         }
                     }
@@ -41,28 +45,60 @@ fun Routing.selectCars() {
             }
         }
     }
-}
+    post("/carDetailes{id}") {
+        val carDetailes = SelectCarDetails()
+        println(carDetailes)
+            call.respondHtml {
+                head {
+                    title { +"CarDetailes" }
+                }
+                body {
+                    ul {
+                        for (carDetail in carDetailes) {
+                            li { +"$carDetail" }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-fun Routing.CarDetailes() {
-    val carDetailes = SelectCarDetails()
-    get("/carDetailes"){
-        call.respondHtml {
-            head {
-                title { +"CarDetailes" }
-            }
-            body {
-                ul {
-                    for (carDetail in carDetailes) {
-                        li { +"$carDetail" }
-                        form(action = "/carDetailes", method = FormMethod.post){
-                            button { +"Detailes" }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+
+
+
+//call.respondHtml {
+//    head {
+//        title { +"CarDetailes" }
+//    }
+//    body {
+////                ul {
+////                    for (carDetail in carDetailes) {
+////                        li { +"$carDetail" }
+////                    }
+////                }
+//        h1 { +"$car" }
+//    }
+//}
+
+
+//fun Routing.CarDetailes() {
+//    val carDetailes = SelectCarDetails()
+//    println(carDetailes)
+//    get("/carDetailes"){
+//        call.respondHtml {
+//            head {
+//                title { +"CarDetailes" }
+//            }
+//            body {
+//                ul {
+//                    for (carDetail in carDetailes) {
+//                        li { +"$carDetail" }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
 
 
 
