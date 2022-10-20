@@ -2,22 +2,17 @@ import com.example.dbConnect.main
 
 fun SelectCars(): MutableList<String> {
 val connection = main()
-val query = connection?.prepareStatement("SELECT type FROM cars WHERE isactive = True")
+val query = connection?.prepareStatement("SELECT id, type FROM cars WHERE isactive = True")
 val result = query?.executeQuery()
 val carsList = mutableListOf<String>()
 
 while (result?.next() == true) {
-//    val id = result.getInt("id")
+    val id = result.getInt("id").toString()
     val type = result.getString("type")
-//    val email = result.getString("email")
-//    val address = result.getString("address")
-//    val telephone = result.getInt("telephone")
-//    val price = result.getInt("price")
-//    val bookeddates = result.getString("bookeddates")
-//    val isactive = result.getBoolean("isactive")
 
-//        carsList.add(cars(id, type))
+    carsList.add(id)
     carsList.add(type)
+    println(carsList)
     }
 
     return carsList
@@ -25,30 +20,4 @@ while (result?.next() == true) {
 
 
 
-//fun BookCars(): MutableList<String> {
-//    val connection = main()
-//    val query = connection?.prepareStatement("")
-//    val result = query?.executeQuery()
-//    val carsList = mutableListOf<String>()
 
-
-//fun SelectCarDetails(): MutableList<String> {
-//    val connection = main()
-//    val query = connection?.prepareStatement("SELECT * FROM cars")
-//    val result = query?.executeQuery()
-//    val carDetails = mutableListOf<String>()
-//    while (result?.next() == true) {
-//        val id = result.getInt("id").toString()
-//        val type = result.getString("type")
-//        val email = result.getString("email")
-//        val address = result.getString("address")
-//        val telephone = result.getInt("telephone").toString()
-//        val price = result.getInt("price").toString()
-//        val bookeddates = result.getString("bookeddates")
-//        val isactive = result.getBoolean("isactive").toString()
-//
-//        carDetails.add(id, type, email, address, telephone, price, bookeddates, isactive)
-//    }
-//
-//    return carDetails
-//}

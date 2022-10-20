@@ -19,7 +19,7 @@ fun Application.configureRouting() {
 //    val html = File("index.html").readText()
         routing {
             selectCars()
-//            CarDetailes()
+            SelectcarDetailes()
 
         }
     }
@@ -28,6 +28,7 @@ fun Application.configureRouting() {
 fun Routing.selectCars() {
     val cars = SelectCars()
     val carDetailes = SelectCarDetails()
+    println(cars)
     get("/"){
         call.respondHtml {
             head {
@@ -45,78 +46,26 @@ fun Routing.selectCars() {
             }
         }
     }
+
+}
+
+fun Routing.SelectcarDetailes() {
     post("/carDetailes{id}") {
         val carDetailes = SelectCarDetails()
         println(carDetailes)
-            call.respondHtml {
-                head {
-                    title { +"CarDetailes" }
-                }
-                body {
-                    ul {
-                        for (carDetail in carDetailes) {
-                            li { +"$carDetail" }
-                        }
+        call.respondHtml {
+            head {
+                title { +"CarDetailes" }
+            }
+            body {
+                ul {
+                    for (carDetail in carDetailes) {
+                        li { +"$carDetail" }
                     }
                 }
             }
         }
     }
+}
 
 
-
-
-//call.respondHtml {
-//    head {
-//        title { +"CarDetailes" }
-//    }
-//    body {
-////                ul {
-////                    for (carDetail in carDetailes) {
-////                        li { +"$carDetail" }
-////                    }
-////                }
-//        h1 { +"$car" }
-//    }
-//}
-
-
-//fun Routing.CarDetailes() {
-//    val carDetailes = SelectCarDetails()
-//    println(carDetailes)
-//    get("/carDetailes"){
-//        call.respondHtml {
-//            head {
-//                title { +"CarDetailes" }
-//            }
-//            body {
-//                ul {
-//                    for (carDetail in carDetailes) {
-//                        li { +"$carDetail" }
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
-
-
-
-//            call.respondFile(File("./templates/index.html"))
-
-//            call.respondText(carDetails.toString())
-//            call.respondText(html)
-
-
-//call.respondHtml {
-//    head {
-//        title { +"Cars" }
-//    }
-//    body {
-//        ul {
-//            for (car in cars) {
-//                li { +"$car" }
-//            }
-//        }
-//    }
-//}
